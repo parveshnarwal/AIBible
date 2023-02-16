@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AI Library</string>
+    <string name="content_description_media">content_description</string>
+    <string name="title">HoppyCopy</string>
+    <string name="secondary_text">Create high-converting emails quickly with AI-generated copy.</string>
+    <string name="supporting_text">Write high-converting emails, 10x faster.\nSave countless hours writing. Use AI to generate powerful copy for hundreds of different email marketing campaigns, drips, newsletters and more.</string>
+    <string name="action_1">Visit</string>
+    <string name="action_2">Fav</string>
+    <string name="text">Free</string>
+    <string name="tab_1">Top</string>
+    <string name="tab_2">Category</string>
+</resources>
