@@ -1,4 +1,4 @@
-package com.aibible;
+package com.aibible.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.aibible.R;
+import com.aibible.models.Tool;
+import com.aibible.adapters.ToolAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

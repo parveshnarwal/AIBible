@@ -1,34 +1,32 @@
-package com.aibible;
+package com.aibible.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.OptIn;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.badge.BadgeDrawable;
-import com.google.android.material.badge.BadgeUtils;
-import com.google.android.material.badge.ExperimentalBadgeUtils;
-import com.google.android.material.chip.Chip;
+import com.aibible.R;
+import com.aibible.models.ToolCategory;
 
 import java.util.List;
 
 public class ToolCategoryAdapter extends RecyclerView.Adapter<ToolCategoryAdapter.CategoryViewHolder>{
 
     private final List<ToolCategory> toolCategoryList;
-    private Context context;
+    private final Context context;
+    private final Callback callback;
 
-    public ToolCategoryAdapter(List<ToolCategory> toolCategoryList, Context context){
+    public ToolCategoryAdapter(List<ToolCategory> toolCategoryList, Context context, Callback callback){
 
         this.toolCategoryList = toolCategoryList;
         this.context = context;
+        this.callback = callback;
     }
 
     @NonNull
@@ -44,6 +42,13 @@ public class ToolCategoryAdapter extends RecyclerView.Adapter<ToolCategoryAdapte
         holder.button.setText(tc.categoryName);
         @SuppressLint("DefaultLocale") String count = String.format("%02d", tc.count);
         holder.badge.setText(count);
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.onClick(tc.categoryName);
+            }
+        });
     }
 
     @Override
@@ -61,5 +66,9 @@ public class ToolCategoryAdapter extends RecyclerView.Adapter<ToolCategoryAdapte
             button = itemView.findViewById(R.id.categoryButton);
             badge = itemView.findViewById(R.id.tvBadge);
         }
+    }
+
+    public interface Callback{
+        void onClick(String categoryName);
     }
 }

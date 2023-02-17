@@ -1,4 +1,4 @@
-package com.aibible;
+package com.aibible.activities;
 
 import android.os.Bundle;
 
@@ -11,7 +11,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.badge.BadgeDrawable;
+import com.aibible.R;
+import com.aibible.models.Tool;
+import com.aibible.models.ToolCategory;
+import com.aibible.fragments.CategoryFragment;
+import com.aibible.fragments.HomeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 for(ToolCategory toolCategory : categories){
                     if(Objects.equals(toolCategory.categoryName, s)){
                         toolCategory.count = toolCategory.count + 1;
+                        toolCategory.toolList.add(tool);
                         isExisting = true;
                     }
                 }
@@ -96,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                     tc.categoryName = s;
                     tc.count = 1;
                     categories.add(tc);
+                    tc.toolList = new ArrayList<>();
+                    tc.toolList.add(tool);
                 }
 
             }

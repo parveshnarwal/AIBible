@@ -1,7 +1,6 @@
-package com.aibible;
+package com.aibible.adapters;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,38 +11,38 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aibible.R;
+import com.aibible.models.Tool;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
+public class ToolCategoryListAdapter extends RecyclerView.Adapter<ToolCategoryListAdapter.ViewHolder>{
 
-    List<Tool> tools;
-    Context context;
+    private final List<Tool> toolList;
+    private final Context context;
 
-    public ToolAdapter(List<Tool> tools, Context context){
-        this.tools = tools;
+    public ToolCategoryListAdapter(List<Tool> toolList, Context context){
+
+        this.toolList = toolList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ToolAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ToolAdapter.ViewHolder holder, int position) {
-        Tool tool = tools.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Tool tool = toolList.get(position);
         holder.tvToolName.setText(tool.toolName);
-        holder.tvToolShorDescription.setText(tool.shortDes);
 
+        holder.tvToolShorDescription.setText(tool.shortDes);
 
         String url =  tool.tnUrl
                 .replace(".png", ".jpg")
@@ -77,15 +76,15 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
                 holder.priceChip3.setVisibility(View.VISIBLE);
             }
         }
-
     }
+
 
     @Override
     public int getItemCount() {
-        return tools.size();
+        return toolList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvToolName;
         TextView tvToolShorDescription;
@@ -108,8 +107,5 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
         }
     }
 
-    public long getItemId(int position) {
-        return position;
-    }
 
 }

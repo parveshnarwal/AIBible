@@ -1,6 +1,8 @@
-package com.aibible;
+package com.aibible.models;
 
-public class Tool {
+import java.io.Serializable;
+
+public class Tool implements Serializable {
     public String id;
     public String toolName;
     public String toolDes;
